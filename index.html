@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEHATI - Sehat Bersama Puasa Sunnah & Posbindu Masjid</title>
+  <meta name="description" content="Platform kesehatan terintegrasi berbasis masjid: pantau puasa sunnah Senin-Kamis, skrining penyakit tidak menular, rapor kesehatan triase, dan panduan gizi piring sehat.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- SVG DEFINITIONS -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="pulse" viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></symbol>
+    <symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+    <symbol id="bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z M10 21h4"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+    <symbol id="doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z M14 3v4h4"/></symbol>
+    <symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5 M12 8h.01"/></symbol>
+    <symbol id="pin" viewBox="0 0 24 24"><path d="M9 3h6l-1 6 3 3H7l3-3zM12 12v9"/></symbol>
+    <symbol id="send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></symbol>
+    <symbol id="mosque" viewBox="0 0 24 24"><path d="M4 21V12a8 8 0 0 1 16 0v9M12 4V2M9 21v-5a3 3 0 0 1 6 0v5"/></symbol>
+    <symbol id="drop" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z"/></symbol>
+    <symbol id="list" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></symbol>
+    <symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 3v18"/></symbol>
+    <symbol id="phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></symbol>
+    <symbol id="desktop" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     1. LANDING PAGE VIEW
+     ============================================================ -->
+<div id="landing-view">
+  <!-- Navigation Header -->
+  <header class="landing-nav">
+    <div class="logo-sehati">
+      <div class="logo-icon"><svg class="i"><use href="#mosque"/></svg></div>
+      <span>SEHATI</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#tentang">Tentang Program</a>
+      <a href="#fitur">Fitur Unggulan</a>
+      <a href="#jadwal">Jadwal Posbindu</a>
+      <a href="#edukasi">Piring Sehat</a>
+      <a href="#testimoni">Testimoni</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn ghost js-open-modal" data-modal="login-modal">Masuk (Demo)</button>
+      <button class="btn amber" onclick="enterApp()">Buka Aplikasi &rarr;</button>
+      <button class="btn-ctrl" onclick="toggleTheme()" title="Ganti Mode Gelap/Terang" style="padding:8px 12px;background:var(--g100);color:var(--g700);border-color:var(--g200)">
+        <svg class="i" width="16" height="16"><use href="#moon"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="landing-hero" id="tentang">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg class="i" width="16" height="16"><use href="#check"/></svg>
+        <span>Didukung Puskesmas & Kader Posbindu Masjid</span>
+      </div>
+      <h1>Puasa Berkah, <br><span class="gradient-text">Tubuh Terjaga</span> Bersama SEHATI</h1>
+      <p>
+        Platform pemantauan kesehatan jemaah berbasis masjid. Menghubungkan ibadah puasa sunnah Senin & Kamis dengan skrining berkala penyakit tidak menular (gula darah, tensi, lingkar pinggang), evaluasi triase risiko, dan pendampingan nakes.
+      </p>
+      <div class="hero-actions">
+        <button class="btn amber" onclick="enterApp()" style="font-size:15px;padding:14px 28px">
+          Mulai Coba Sekarang &rarr;
+        </button>
+        <button class="btn ghost js-open-modal" data-modal="login-modal">
+          Pilih Profil Demo Jemaah
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <b>24 Hari</b>
+          <span>Siklus Puasa Sunnah</span>
+        </div>
+        <div class="hero-stat">
+          <b>3 Triase</b>
+          <span>Normal, Waspada, Rujuk</span>
+        </div>
+        <div class="hero-stat">
+          <b>86%</b>
+          <span>Keikutsertaan Jemaah</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Preview Showcase Card -->
+    <div class="hero-card-preview">
+      <div class="preview-phone-card">
+        <div class="screen-hero">
+          <span class="star" style="top:50px;left:210px"></span>
+          <span class="star" style="top:70px;left:250px"></span>
+          <span class="star" style="top:38px;left:150px"></span>
+          <div class="hi">Assalamualaikum, <b class="js-user-name">Pak Hasan</b></div>
+          <div class="countdown-box">
+            <div class="countdown-time js-countdown-time">02:14:30</div>
+            <div class="countdown-label js-countdown-label">menuju waktu berbuka puasa</div>
+          </div>
+          <svg class="skyline" viewBox="0 0 300 92" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="#0B3D35">
+              <rect x="0" y="78" width="300" height="14"/>
+              <path d="M40 78V58a34 34 0 0 1 68 0v20z"/>
+              <rect x="73" y="14" width="2" height="12"/>
+              <circle cx="74" cy="13" r="3"/>
+              <rect x="206" y="30" width="13" height="48"/>
+              <path d="M204 30h17l-8.500-14z"/>
+              <rect x="244" y="52" width="10" height="26"/>
+              <path d="M242 52h14l-7-11z"/>
+              <path d="M120 78V68a14 14 0 0 1 28 0v10z"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="pad" style="margin-top:-14px;position:relative;z-index:3">
+          <div class="card stack" style="margin-bottom:12px">
+            <div class="row">
+              <svg style="width:40px;height:40px;flex:none" viewBox="0 0 42 42">
+                <circle cx="21" cy="21" r="17" fill="none" stroke="var(--line)" stroke-width="5"/>
+                <circle class="js-ring-mini-fg" cx="21" cy="21" r="17" fill="none" stroke="var(--g500)" stroke-width="5" stroke-linecap="round" stroke-dasharray="107" stroke-dashoffset="36" transform="rotate(-90 21 21)"/>
+              </svg>
+              <div>
+                <div class="strong js-streak-text">Puasa Kamis hari ini</div>
+                <div class="meta js-streak-sub">16 dari 24 puasa siklus ini</div>
+              </div>
+            </div>
+            <div class="row" style="border-top:1px solid var(--line);padding-top:10px">
+              <div style="width:34px;height:34px;border-radius:10px;background:var(--g100);color:var(--g700);display:flex;align-items:center;justify-content:center">
+                <svg class="i" width="18" height="18"><use href="#mosque"/></svg>
+              </div>
+              <div>
+                <div class="strong">Skrining di Masjid Al-Falah</div>
+                <div class="meta">Hari ini, 17.15 menjelang berbuka</div>
+              </div>
+            </div>
+          </div>
+          <button class="btn full amber" onclick="enterApp()">Buka Seluruh Fitur Jemaah &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="landing-section" id="fitur">
+    <div class="section-head">
+      <span class="tag">Solusi Lengkap</span>
+      <h2>Semua yang Dibutuhkan untuk Sehat & Istiqomah</h2>
+      <p>Dirancang ramah lansia, mudah dioperasikan kader, dan terhubung langsung dengan rujukan faskes Puskesmas.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#moon"/></svg></div>
+        <h3>Puasa Sunnah & Pengingat Alarm</h3>
+        <p>Kalender mingguan Senin & Kamis, tombol check-in harian dengan cincin animasi, pengingat sahur & berbuka yang dilengkapi bunyi alarm Web Audio.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#pulse"/></svg></div>
+        <h3>Skrining & Grafik Tren Berkala</h3>
+        <p>Catat gula darah puasa, tekanan darah, dan lingkar pinggang. Dilengkapi grafik visual dinamis, batas rentang sehat, dan indikator perubahan.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#doc"/></svg></div>
+        <h3>Rapor Kesehatan & Triase Otomatis</h3>
+        <p>Klasifikasi otomatis menjadi Normal, Waspada, atau Rujuk. Dilengkapi panduan langkah berikutnya dan pengarah rujukan ke Puskesmas.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#plate"/></svg></div>
+        <h3>Piring Sehat & Menu Bergizi</h3>
+        <p>Pembagian rasio 50% sayur buah, 25% karbohidrat, 25% protein. Disertai anjuran salat Maghrib dulu sebelum makan utama serta rekomendasi sahur.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#chat"/></svg></div>
+        <h3>Komunitas WA & Dampingan Kader</h3>
+        <p>Interaksi langsung dengan kader Posbindu dan dokter Puskesmas via simulasi grup WhatsApp. Tombol tanya cepat dan pesan pengingat sematan.</p>
+      </div>
+
+      <div class="feature-box">
+        <div class="f-icon"><svg class="i"><use href="#chart"/></svg></div>
+        <h3>Dasbor Evaluasi Kader & Puskesmas</h3>
+        <p>Pantau rerata gula darah jemaah, deteksi dini komplikasi, grafik kehadiran per minggu, dan tabel triage jemaah yang perlu rujukan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule & Mosque Banner -->
+  <section class="landing-section" id="jadwal">
+    <div class="schedule-banner">
+      <div>
+        <span class="chip warn" style="margin-bottom:12px">Jadwal Rutin Posbindu</span>
+        <h3>Skrining Gratis di Serambi Masjid</h3>
+        <p>Dilakukan setiap hari puasa sunnah, 45 menit sebelum waktu berbuka. Kader terlatih siap memeriksa tensi, gula darah, dan lingkar pinggang kamu.</p>
+        <button class="btn amber" onclick="enterApp()">Lihat Lokasi & Konsultasi</button>
+      </div>
+      <div class="mosque-list">
+        <div class="mosque-item">
+          <div>
+            <b>Masjid Raya Al-Falah</b>
+            <small>Setiap Kamis, 17.15 WIB · Kader: Bu Rina & Nakes dr. Dina</small>
+          </div>
+          <span class="chip ok">Aktif Hari Ini</span>
+        </div>
+        <div class="mosque-item">
+          <div>
+            <b>Masjid At-Taqwa</b>
+            <small>Setiap Senin, 17.15 WIB · Kader: Pak Bambang</small>
+          </div>
+          <span class="chip neutral">Senin Depan</span>
+        </div>
+        <div class="mosque-item">
+          <div>
+            <b>Masjid Baitul Makmur</b>
+            <small>Setiap Kamis, 17.00 WIB · Kader: Ibu Maryam</small>
+          </div>
+          <span class="chip neutral">Kamis Depan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="landing-section" id="testimoni">
+    <div class="section-head">
+      <span class="tag">Kisah Nyata Jemaah</span>
+      <h2>Perubahan Sehat yang Dirasakan</h2>
+      <p>Bagaimana perpaduan ibadah puasa dan pemantauan posbindu mengubah kesehatan jemaah.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <p>"Awalnya lingkar pinggang saya 92 cm dan gula darah mulai naik ke 126 mg/dL. Setelah rutin puasa Senin Kamis didampingi kader SEHATI, lingkar pinggang turun 3 cm dan badan jauh lebih enteng!"</p>
+        <div class="testi-user">
+          <div class="testi-avatar">PH</div>
+          <div>
+            <b>Pak Hasan (58 tahun)</b>
+            <small style="color:var(--muted)">Jemaah Masjid Al-Falah</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p>"Saya lansia dengan riwayat tensi tinggi. Berkat fitur triase Rujuk SEHATI, saya langsung didampingi kader Bu Rina ke Puskesmas sebelum terjadi komplikasi. Sekarang obat teratur dan puasa tetap aman."</p>
+        <div class="testi-user">
+          <div class="testi-avatar" style="background:var(--amber-soft);color:var(--amber-dark)">ST</div>
+          <div>
+            <b>Ibu Siti (64 tahun)</b>
+            <small style="color:var(--muted)">Jemaah Lansia Terbina</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <p>"Aplikasi ini sangat meringankan kerja kami kader Posbindu. Data langsung terhitung otomatis, ada grafik tren, dan jemaah bersemangat karena saling menyemangati di grup komunitas."</p>
+        <div class="testi-user">
+          <div class="testi-avatar" style="background:var(--ok-soft);color:var(--ok-dark)">RN</div>
+          <div>
+            <b>Ibu Rina</b>
+            <small style="color:var(--muted)">Koordinator Kader Posbindu</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="footer-inner">
+      <div class="logo-sehati">
+        <div class="logo-icon"><svg class="i"><use href="#mosque"/></svg></div>
+        <span>SEHATI</span>
+      </div>
+      <div>
+        Platform Kesehatan Berbasis Komunitas Masjid &copy; 2026. Bekerjasama dengan Puskesmas & Jemaah Masjid.
+      </div>
+      <div>
+        <button class="btn sm ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">&uarr; Kembali ke Atas</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ============================================================
+     2. AUTHENTICATED APP VIEW (CONTAINER)
+     ============================================================ -->
+<div id="app-view">
+  <div class="app-container">
+
+    <!-- Mobile App Header (Top bar only visible on mobile screens) -->
+    <header class="mobile-app-header">
+      <div class="brand-badge" style="display:flex;align-items:center;gap:8px">
+        <div class="logo-icon" style="width:30px;height:30px;border-radius:9px;background:var(--g700);color:#fff;display:flex;align-items:center;justify-content:center">
+          <svg class="i" width="16" height="16"><use href="#mosque"/></svg>
+        </div>
+        <span style="font-weight:800;font-size:16px;color:var(--g900)">SEHATI</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button class="btn-ctrl js-open-modal" data-modal="login-modal" style="padding:4px 10px;font-size:11px;background:var(--g100);color:var(--g700);border-color:var(--g200)" title="Ganti Profil">
+          <svg class="i" width="13" height="13"><use href="#user"/></svg> <span class="js-user-name">Pak Hasan</span>
+        </button>
+        <button class="btn-ctrl" onclick="toggleTheme()" title="Ganti Tema" style="padding:5px 8px;background:var(--g100);color:var(--g700);border-color:var(--g200)">
+          <svg class="i" width="14" height="14"><use href="#moon"/></svg>
+        </button>
+        <button class="btn-ctrl" onclick="logoutToLanding()" title="Keluar ke Landing Page" style="padding:5px 8px;background:var(--risk-soft);color:var(--risk-dark);border-color:rgba(214,69,61,0.2)">
+          <svg class="i" width="14" height="14" style="stroke-width:2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Responsive App Layout (Sidebar on desktop, bottom tabs on mobile) -->
+    <div class="desk-layout">
+      <!-- Sidebar Navigation -->
+      <aside class="desk-sidebar">
+        <div class="sidebar-brand">
+          <div class="logo-icon" style="width:32px;height:32px;border-radius:10px">
+            <svg class="i" width="18" height="18"><use href="#mosque"/></svg>
+          </div>
+          <span>SEHATI</span>
+        </div>
+
+        <!-- User Profile Area in Sidebar -->
+        <div class="sidebar-user">
+          <div class="avatar-sm js-user-avatar">PH</div>
+          <div class="sidebar-user-meta">
+            <b class="js-user-name">Pak Hasan</b>
+            <span class="js-user-role-badge badge jemaah">Jemaah</span>
+          </div>
+        </div>
+
+        <div class="desk-sidebar-nav">
+          <button class="desk-nav-btn active" data-tab="beranda"><svg class="i"><use href="#home"/></svg> Beranda</button>
+          <button class="desk-nav-btn" data-tab="profil"><svg class="i"><use href="#user"/></svg> Profil Jemaah</button>
+          <button class="desk-nav-btn" data-tab="skrining"><svg class="i"><use href="#pulse"/></svg> Skrining &amp; Tren</button>
+          <button class="desk-nav-btn" data-tab="rapor"><svg class="i"><use href="#doc"/></svg> Rapor Kesehatan</button>
+          <button class="desk-nav-btn" data-tab="puasa"><svg class="i"><use href="#moon"/></svg> Puasa &amp; Alarm</button>
+          <button class="desk-nav-btn" data-tab="nutrisi"><svg class="i"><use href="#plate"/></svg> Piring Sehat &amp; Menu</button>
+          <button class="desk-nav-btn" data-tab="komunitas"><svg class="i"><use href="#chat"/></svg> Komunitas WA</button>
+          <button class="desk-nav-btn" data-tab="dasbor"><svg class="i"><use href="#chart"/></svg> Dasbor Posbindu</button>
+        </div>
+
+        <div style="margin-top:20px;padding:12px 14px;background:var(--g100);border-radius:14px">
+          <small style="color:var(--g700);font-weight:700;display:block">Jadwal Terdekat:</small>
+          <b style="font-size:12.5px;color:var(--g900);display:block;margin:4px 0">Kamis, 17.15 WIB</b>
+          <small style="color:var(--muted);font-size:11px">Skrining di Serambi Masjid Al-Falah</small>
+        </div>
+
+        <div class="sidebar-actions">
+          <button class="btn sm ghost full js-open-modal" data-modal="login-modal">Ganti Profil</button>
+          <button class="btn sm ghost full" onclick="toggleTheme()"><svg class="i" width="14" height="14"><use href="#moon"/></svg> Mode Tema</button>
+          <button class="btn sm ghost full" onclick="logoutToLanding()">Keluar</button>
+        </div>
+      </aside>
+
+      <!-- Main Desktop Panel -->
+      <main class="desk-main-panel">
+
+        <!-- 1. BERANDA VIEW -->
+        <div class="screen-view" data-screen="beranda">
+          <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px">
+            <div class="screen-hero" style="height:220px;padding:34px 28px">
+              <span class="star" style="top:50px;left:210px"></span>
+              <span class="star" style="top:70px;left:450px"></span>
+              <div class="hi">Assalamualaikum, <b class="js-user-name" style="font-size:22px">Pak Hasan</b></div>
+              <div class="countdown-box">
+                <div class="countdown-time js-countdown-time" style="font-size:52px">02:14:30</div>
+                <div class="countdown-label js-countdown-label">lagi menuju waktu berbuka puasa</div>
+              </div>
+              <svg class="skyline" viewBox="0 0 300 92" preserveAspectRatio="none" aria-hidden="true">
+                <g fill="#0B3D35">
+                  <rect x="0" y="78" width="300" height="14"/>
+                  <path d="M40 78V58a34 34 0 0 1 68 0v20z"/>
+                  <rect x="73" y="14" width="2" height="12"/>
+                  <circle cx="74" cy="13" r="3"/>
+                  <rect x="206" y="30" width="13" height="48"/>
+                  <path d="M204 30h17l-8.500-14z"/>
+                  <rect x="244" y="52" width="10" height="26"/>
+                  <path d="M242 52h14l-7-11z"/>
+                  <path d="M120 78V68a14 14 0 0 1 28 0v10z"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div class="desk-grid-3" style="margin-bottom:20px">
+            <div class="card">
+              <div class="row">
+                <svg style="width:48px;height:48px;flex:none" viewBox="0 0 42 42">
+                  <circle cx="21" cy="21" r="17" fill="none" stroke="var(--line)" stroke-width="5"/>
+                  <circle class="js-ring-mini-fg" cx="21" cy="21" r="17" fill="none" stroke="var(--g500)" stroke-width="5" stroke-linecap="round" stroke-dasharray="107" stroke-dashoffset="36" transform="rotate(-90 21 21)"/>
+                </svg>
+                <div>
+                  <div class="strong js-streak-text">Puasa Kamis hari ini</div>
+                  <div class="meta js-streak-sub">16 dari 24 puasa siklus ini</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <div style="width:42px;height:42px;border-radius:12px;background:var(--g100);color:var(--g700);display:flex;align-items:center;justify-content:center;flex:none">
+                  <svg class="i" width="22" height="22"><use href="#mosque"/></svg>
+                </div>
+                <div>
+                  <div class="strong">Skrining di Masjid Al-Falah</div>
+                  <div class="meta">Hari ini, 17.15 menjelang berbuka</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                <div style="width:42px;height:42px;border-radius:12px;background:var(--amber-soft);color:var(--amber-dark);display:flex;align-items:center;justify-content:center;flex:none">
+                  <svg class="i" width="22" height="22"><use href="#doc"/></svg>
+                </div>
+                <div>
+                  <div class="strong">Evaluasi Terkini</div>
+                  <span class="chip warn js-beranda-status-chip">Status: WASPADA</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="desk-grid-2">
+            <div class="card stack">
+              <div class="strong">Aksi &amp; Pintasan Penting</div>
+              <div class="action-grid">
+                <button class="action-card-btn" onclick="switchTab('puasa')">
+                  <div class="action-ic"><svg class="i" width="18" height="18"><use href="#moon"/></svg></div>
+                  <div class="action-info">
+                    <b>Check-in Puasa</b>
+                    <small>Catat ibadah puasa</small>
+                  </div>
+                </button>
+                <button class="action-card-btn" onclick="openModal('screening-modal')">
+                  <div class="action-ic" style="background:var(--ok-soft);color:var(--ok)"><svg class="i" width="18" height="18"><use href="#plus"/></svg></div>
+                  <div class="action-info">
+                    <b>Input Skrining</b>
+                    <small>Gula, tensi, lingkar</small>
+                  </div>
+                </button>
+                <button class="action-card-btn" onclick="switchTab('nutrisi')">
+                  <div class="action-ic" style="background:var(--amber-soft);color:var(--amber-dark)"><svg class="i" width="18" height="18"><use href="#plate"/></svg></div>
+                  <div class="action-info">
+                    <b>Piring Sehat</b>
+                    <small>Gizi sahur &amp; iftar</small>
+                  </div>
+                </button>
+                <button class="action-card-btn" onclick="switchTab('komunitas')">
+                  <div class="action-ic" style="background:var(--g100);color:var(--g700)"><svg class="i" width="18" height="18"><use href="#chat"/></svg></div>
+                  <div class="action-info">
+                    <b>Diskusi Kader</b>
+                    <small>Konsultasi grup WA</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <div class="card stack">
+              <div class="strong">Pengingat Waktu Ibadah &amp; Sahur</div>
+              <div class="rem-item">
+                <span class="ic"><svg class="i" width="18" height="18"><use href="#moon"/></svg></span>
+                <div class="tx">
+                  <b>Alarm Sahur (03.45 WIB)</b>
+                  <small>Bangun sahur &amp; niat puasa sunnah</small>
+                </div>
+                <div class="rem-actions">
+                  <button class="btn-test-sound js-test-sound-sahur">&#9658; Uji</button>
+                  <span class="switch-toggle on"></span>
+                </div>
+              </div>
+              <div class="rem-item">
+                <span class="ic"><svg class="i" width="18" height="18"><use href="#bell"/></svg></span>
+                <div class="tx">
+                  <b>Alarm Berbuka (17.50 WIB)</b>
+                  <small>Harmoni azan &amp; doa buka puasa</small>
+                </div>
+                <div class="rem-actions">
+                  <button class="btn-test-sound js-test-sound-iftar">&#9658; Uji</button>
+                  <span class="switch-toggle on"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. PROFIL VIEW -->
+        <div class="screen-view" data-screen="profil" style="display:none">
+          <div class="card" style="padding:24px">
+            <div class="row between" style="margin-bottom:16px">
+              <div>
+                <h2 class="title">Profil &amp; Data Awal Jemaah</h2>
+                <div class="sub">Informasi biometrik dasar dan penanda kondisi khusus untuk pendampingan nakes</div>
+              </div>
+              <span class="badge jemaah" style="padding:6px 14px;font-size:12px">Masjid Al-Falah</span>
+            </div>
+
+            <div class="grid3" style="margin-bottom:16px">
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">Berat Badan (kg)</small>
+                <b style="font-size:20px;display:block">68 kg</b>
+              </div>
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">Tinggi Badan (cm)</small>
+                <b style="font-size:20px;display:block">165 cm</b>
+              </div>
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">IMT (Indeks Massa Tubuh)</small>
+                <b class="js-prof-imt" style="font-size:18px;display:block;color:var(--g700)">25.0 (Kelebihan BB)</b>
+              </div>
+            </div>
+
+            <div class="grid3" style="margin-bottom:20px">
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">Lingkar Pinggang Awal</small>
+                <b style="font-size:20px;display:block">92 cm</b>
+              </div>
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">Tekanan Darah Awal</small>
+                <b style="font-size:20px;display:block">128/82 mmHg</b>
+              </div>
+              <div class="card" style="padding:14px">
+                <small style="color:var(--muted)">Gula Darah Puasa Awal</small>
+                <b style="font-size:20px;display:block">126 mg/dL</b>
+              </div>
+            </div>
+
+            <div class="sectionlabel">Kondisi Khusus yang Memerlukan Pendampingan:</div>
+            <div class="opts" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+              <span class="opt js-cond-opt sel" data-cond="lansia">Lansia 60 tahun ke atas</span>
+              <span class="opt js-cond-opt" data-cond="hamil">Sedang hamil</span>
+              <span class="opt js-cond-opt sel" data-cond="predm">Diabetes Melitus / Pre-DM</span>
+              <span class="opt js-cond-opt" data-cond="hipertensi">Hipertensi Kronis</span>
+              <span class="opt js-cond-opt" data-cond="jantung">Penyakit Jantung</span>
+            </div>
+
+            <div class="note" style="display:flex;gap:10px;background:var(--amber-soft);border-radius:14px;padding:12px 16px;font-size:12.5px;color:#6E4708;margin-bottom:20px">
+              <svg class="i" width="18" height="18" style="flex:none"><use href="#info"/></svg>
+              <span>Didampingi Kader Bu Rina dan Dokter Puskesmas. Jemaah berhak membatalkan puasa jika mengalami hipoglikemia, pusing, atau dehidrasi akut.</span>
+            </div>
+
+            <button class="btn amber" onclick="showToast('Data profil berhasil dikonfirmasi!')">Perbarui Data Kesehatan</button>
+          </div>
+        </div>
+
+        <!-- 3. SKRINING VIEW -->
+        <div class="screen-view" data-screen="skrining" style="display:none">
+          <div class="card" style="padding:24px">
+            <div class="row between" style="margin-bottom:16px">
+              <div>
+                <h2 class="title">Log Skrining &amp; Tren Perkembangan</h2>
+                <div class="sub">Grafik evaluasi per siklus 8 sampai 12 minggu</div>
+              </div>
+              <button class="btn amber js-open-modal" data-modal="screening-modal">+ Catat Skrining Baru</button>
+            </div>
+
+            <div class="segctl" style="max-width:400px">
+              <button class="js-seg-metric on" data-metric="gula">Gula Darah Puasa</button>
+              <button class="js-seg-metric" data-metric="tekanan">Tekanan Darah</button>
+              <button class="js-seg-metric" data-metric="pinggang">Lingkar Pinggang</button>
+            </div>
+
+            <div class="card chartcard" style="margin:20px 0;padding:20px" id="chart-container-desk">
+              <!-- Synced via JS -->
+            </div>
+
+            <div class="desk-grid-2">
+              <div class="tile">
+                <small>Tekanan Darah Terkini</small>
+                <b class="js-tile-bp" style="font-size:24px">124/80 mmHg</b>
+                <em class="js-tile-bp-delta"><svg class="i" width="12" height="12"><use href="#down"/></svg> Turun 4 poin</em>
+              </div>
+              <div class="tile">
+                <small>Lingkar Pinggang Terkini</small>
+                <b class="js-tile-waist" style="font-size:24px">89 cm</b>
+                <em class="js-tile-waist-delta"><svg class="i" width="12" height="12"><use href="#down"/></svg> Turun 3 cm</em>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. RAPOR VIEW -->
+        <div class="screen-view" data-screen="rapor" style="display:none">
+          <div class="desk-grid-2">
+            <div class="card">
+              <div class="meta">Rapor Kesehatan Jemaah</div>
+              <div class="result-banner waspada" style="margin:12px 0 16px">
+                <span class="chip js-rapor-chip" style="background:rgba(74,48,3,.12);color:#4A3003">Gula darah puasa 108 mg/dL &middot; Tensi 124/80</span>
+                <div class="big js-rapor-title" style="font-size:36px">Waspada</div>
+                <p class="js-rapor-desc">Sedikit di atas rentang sehat. Sangat bisa diperbaiki dengan rutinitas puasa sunnah dan pembatasan asupan manis saat berbuka.</p>
+                <div class="scale-gauge">
+                  <i style="left:50%"></i>
+                </div>
+                <div class="legend">
+                  <span style="color:var(--ok)">Normal</span>
+                  <span style="color:var(--amber)">Waspada</span>
+                  <span style="color:var(--risk)">Rujuk</span>
+                </div>
+              </div>
+
+              <div class="row">
+                <button class="btn full" onclick="switchTab('komunitas')">Tanya Kader Posbindu</button>
+                <button class="btn ghost full js-open-modal" data-modal="puskesmas-modal">Rujukan Puskesmas</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size:16px;font-weight:800;margin-bottom:12px">Langkah Berikutnya yang Dianjurkan</h3>
+              <div class="stack" id="rapor-todos-desk">
+                <div class="todo-item"><span class="dot"><svg class="i"><use href="#check"/></svg></span><span>Lanjutkan puasa Senin dan Kamis untuk memulihkan sensitivitas insulin</span></div>
+                <div class="todo-item"><span class="dot"><svg class="i"><use href="#check"/></svg></span><span>Hindari gorengan dan batasi minuman manis pekat saat berbuka</span></div>
+                <div class="todo-item"><span class="dot"><svg class="i"><use href="#check"/></svg></span><span>Jalan santai 20-30 menit setiap hari / jalan kaki ke masjid</span></div>
+                <div class="todo-item"><span class="dot"><svg class="i"><use href="#check"/></svg></span><span>Ukur ulang gula darah &amp; tensi 2 minggu lagi di Posbindu</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. PUASA & ALARM VIEW -->
+        <div class="screen-view" data-screen="puasa" style="display:none">
+          <div class="desk-grid-2">
+            <div class="card">
+              <h2 class="title">Check-in &amp; Kalender Puasa</h2>
+              <div class="sub">Minggu ini (Senin &amp; Kamis ditandai)</div>
+
+              <div class="week-grid">
+                <div class="day-box fast">Sen<b>19</b><svg class="i"><use href="#moon"/></svg></div>
+                <div class="day-box">Sel<b>20</b></div>
+                <div class="day-box">Rab<b>21</b></div>
+                <div class="day-box today">Kam<b>22</b><svg class="i"><use href="#moon"/></svg></div>
+                <div class="day-box">Jum<b>23</b></div>
+                <div class="day-box">Sab<b>24</b></div>
+                <div class="day-box">Min<b>25</b></div>
+              </div>
+
+              <div class="ringwrap">
+                <svg viewBox="0 0 176 176" aria-hidden="true">
+                  <circle cx="88" cy="88" r="74" fill="none" stroke="var(--line)" stroke-width="14"/>
+                  <circle class="js-ring-desk-fg" cx="88" cy="88" r="74" fill="none" stroke="var(--g500)" stroke-width="14" stroke-linecap="round" stroke-dasharray="465" stroke-dashoffset="155"/>
+                </svg>
+                <div class="mid"><b id="ringnum-desk">16</b><span>dari 24 puasa</span></div>
+              </div>
+
+              <button class="checkbtn" onclick="handleFastingCheckin()">
+                <svg class="i"><use href="#moon"/></svg>
+                <span>Saya puasa hari ini (Check-in)</span>
+              </button>
+
+              <div class="sectionlabel" style="margin-top:20px">Riwayat Siklus Puasa (12 Minggu x 2 Hari)</div>
+              <div class="card" style="padding:10px">
+                <div class="heat" id="heat-desk"></div>
+                <div class="row" style="gap:12px;margin-top:10px;font-size:10px;color:var(--muted)">
+                  <span><i class="dot6" style="background:var(--g500)"></i>Puasa</span>
+                  <span><i class="dot6" style="background:var(--amber)"></i>Terlewat</span>
+                  <span><i class="dot6" style="background:var(--g100);border:1px solid var(--g200)"></i>Belum</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="stack">
+              <!-- ALARM AUDIO SETTINGS -->
+              <div class="card">
+                <h3 style="font-size:16px;font-weight:800;margin-bottom:12px">Pengingat &amp; Alarm Bunyi</h3>
+                <div class="rem-item">
+                  <span class="ic"><svg class="i"><use href="#moon"/></svg></span>
+                  <div class="tx">
+                    <b>Alarm Sahur (03.45 WIB)</b>
+                    <small>Nada lembut bangun sahur &amp; minum air</small>
+                  </div>
+                  <div class="rem-actions">
+                    <button class="btn-test-sound js-test-sound-sahur">&#9658; Uji Alarm</button>
+                    <span class="switch-toggle on"></span>
+                  </div>
+                </div>
+
+                <div class="rem-item">
+                  <span class="ic"><svg class="i"><use href="#bell"/></svg></span>
+                  <div class="tx">
+                    <b>Alarm Waktu Berbuka (17.50 WIB)</b>
+                    <small>Harmoni syahdu waktu iftar</small>
+                  </div>
+                  <div class="rem-actions">
+                    <button class="btn-test-sound js-test-sound-iftar">&#9658; Uji Alarm</button>
+                    <span class="switch-toggle on"></span>
+                  </div>
+                </div>
+
+                <div class="rem-item">
+                  <span class="ic"><svg class="i"><use href="#mosque"/></svg></span>
+                  <div class="tx">
+                    <b>Pengingat Skrining (17.15 WIB)</b>
+                    <small>1 jam menjelang berbuka di masjid</small>
+                  </div>
+                  <div class="rem-actions">
+                    <span class="switch-toggle on"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SYMPTOM REPORTER -->
+              <div class="card stack">
+                <h3 style="font-size:16px;font-weight:800">Laporan: Apa yang Dirasakan?</h3>
+                <p style="font-size:12px;color:var(--muted)">Laporkan gejala agar kader dan nakes dapat mendampingi kondisi fisikmu saat berpuasa:</p>
+                <div class="symptom-chips">
+                  <span class="symptom-chip">Pusing</span>
+                  <span class="symptom-chip">Lemas Berkunang-kunang</span>
+                  <span class="symptom-chip">Perut Perih / Maag</span>
+                  <span class="symptom-chip">Haus Berlebihan</span>
+                  <span class="symptom-chip">Alhamdulillah Bugar &amp; Segar</span>
+                </div>
+                <input type="text" id="symptom-note-desk" class="form-control" placeholder="Tulis catatan jika ada keluhan tambahan...">
+                <button class="btn amber full" onclick="handleSymptomReport(Array.from(document.querySelectorAll('.symptom-chip.selected')).map(c=>c.textContent.trim()), document.getElementById('symptom-note-desk').value)">Kirim Laporan ke Kader</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. NUTRISI VIEW -->
+        <div class="screen-view" data-screen="nutrisi" style="display:none">
+          <div class="desk-grid-2">
+            <div class="card">
+              <h2 class="title">Piring Sehat &amp; Adab Berbuka</h2>
+              <div class="sub">Panduan rasio nutrisi gizi seimbang Kemenkes</div>
+              <div class="plate" style="margin:20px 0">
+                <svg viewBox="0 0 120 120" style="width:140px;height:140px">
+                  <circle cx="60" cy="60" r="56" fill="#fff" stroke="var(--line)" stroke-width="3"/>
+                  <path d="M60 60 L60 12 A48 48 0 0 1 108 60Z" fill="#E8A317" opacity=".9"/>
+                  <path d="M60 60 L108 60 A48 48 0 0 1 60 108Z" fill="#2E8B72"/>
+                  <path d="M60 60 L60 108 A48 48 0 0 1 12 60 A48 48 0 0 1 60 12Z" fill="#9CCDB9"/>
+                  <circle cx="60" cy="60" r="7" fill="#fff"/>
+                </svg>
+                <ul style="font-size:13px">
+                  <li><i style="background:#9CCDB9"></i><b>50% Sayur &amp; Buah</b></li>
+                  <li><i style="background:#E8A317"></i><b>25% Karbohidrat Kompleks</b></li>
+                  <li><i style="background:#2E8B72"></i><b>25% Lauk Protein</b></li>
+                </ul>
+              </div>
+
+              <div class="timeline">
+                <div class="step" data-n="1"><b>1. Mulai dengan yang Ringan</b><span>Air putih hangat &amp; 1-3 kurma</span></div>
+                <div class="step" data-n="2"><b>2. Salat Maghrib Dulu</b><span>Beri jeda 15-20 menit bagi lambung</span></div>
+                <div class="step" data-n="3"><b>3. Makan Utama Secukupnya</b><span>Gunakan piring sehat, batasi gorengan berlebih</span></div>
+              </div>
+            </div>
+
+            <div class="card stack">
+              <h3 style="font-size:16px;font-weight:800">Rekomendasi Menu Sahur &amp; Berbuka</h3>
+              <div class="card" style="background:var(--card-subtle)">
+                <b style="color:var(--g700)">Menu Sahur Padat Energi (Tahan Puasa):</b>
+                <p style="font-size:12.5px;color:var(--ink);margin-top:4px">Oatmeal / nasi merah + sup bening ayam wortel + tahu tempe bacem panggang + 1 pisang + 3 gelas air putih bertahap.</p>
+              </div>
+              <div class="card" style="background:var(--card-subtle)">
+                <b style="color:var(--amber-dark)">Menu Berbuka Ringan &amp; Bergizi:</b>
+                <p style="font-size:12.5px;color:var(--ink);margin-top:4px">3 kurma + air hangat + jeda salat Maghrib + pepes ikan / dada ayam kukus + sayur bening bayam jagung + semangka segar.</p>
+              </div>
+              <div class="card" style="background:var(--g100)">
+                <b style="color:var(--g900)">Pola Hidrasi 2-4-2 Gelas:</b>
+                <p style="font-size:12px;color:var(--g700);margin-top:4px">2 gelas saat berbuka &bull; 4 gelas sepanjang malam &bull; 2 gelas saat sahur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. KOMUNITAS VIEW -->
+        <div class="screen-view" data-screen="komunitas" style="display:none">
+          <div class="card" style="padding:0;overflow:hidden">
+            <div class="chathead">
+              <div class="avatar">AF</div>
+              <div>
+                <div class="strong">Komunitas Jemaah Masjid Al-Falah</div>
+                <div class="meta">42 Jemaah &bull; Petugas Posbindu &amp; Dokter Puskesmas Aktif</div>
+              </div>
+              <a href="https://chat.whatsapp.com/" target="_blank" class="btn sm amber" style="margin-left:auto">Buka Grup WhatsApp Resmi</a>
+            </div>
+
+            <div class="pin">
+              <svg class="i"><use href="#pin"/></svg>
+              <span><b>Pesan Disematkan Petugas:</b> Skrining Posbindu diadakan setiap Kamis sore pukul 17.15 di serambi masjid. Pemeriksaan tensi dan gula darah gratis.</span>
+            </div>
+
+            <div class="msgs-container" id="community-msgs-desk" style="max-height:420px">
+              <!-- Synced via JS -->
+            </div>
+
+            <div class="quick-replies">
+              <span class="quick-chip" data-query="Kapan jadwal skrining posbindu minggu ini?">Jadwal skrining</span>
+              <span class="quick-chip" data-query="Bagaimana rekomendasi menu sahur agar kuat puasa?">Ide menu sahur</span>
+              <span class="quick-chip" data-query="Bu Kader, apakah jemaah lansia aman berpuasa jika ada riwayat tensi?">Tanya kader</span>
+            </div>
+
+            <div class="inputbar">
+              <input type="text" id="chat-input-desk" placeholder="Ketik pertanyaan untuk kader atau sesama jemaah...">
+              <button class="btn sm" onclick="handleSendMessage(document.getElementById('chat-input-desk').value); document.getElementById('chat-input-desk').value = '';">Kirim</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. DASBOR KADER VIEW -->
+        <div class="screen-view" data-screen="dasbor" style="display:none">
+          <div class="card" style="padding:24px">
+            <div class="row between" style="margin-bottom:20px">
+              <div>
+                <h2 class="title">Dasbor Evaluasi Kader &amp; Puskesmas</h2>
+                <div class="sub">Masjid Al-Falah &bull; Siklus 1 Minggu ke-10</div>
+              </div>
+              <button class="btn amber" onclick="showToast('Rekapitulasi data skrining Puskesmas berhasil diunduh (format CSV/PDF).')">
+                <svg class="i" width="16" height="16" style="flex:none"><use href="#doc"/></svg> Unduh Rekap Puskesmas
+              </button>
+            </div>
+
+            <div class="desk-grid-3" style="margin-bottom:24px">
+              <div class="card">
+                <small style="color:var(--muted)">Rerata Gula Darah Puasa</small>
+                <b style="font-size:28px;display:block;margin:4px 0">108 <span style="font-size:13px;color:var(--muted)">mg/dL</span></b>
+                <em style="color:var(--ok);font-size:12px;font-weight:700">Turun dari 124 mg/dL di minggu 1</em>
+              </div>
+              <div class="card">
+                <small style="color:var(--muted)">Jemaah Terdeteksi Dini</small>
+                <b style="font-size:28px;display:block;margin:4px 0">7 <span style="font-size:13px;color:var(--muted)">orang</span></b>
+                <em style="color:var(--amber-dark);font-size:12px;font-weight:700">5 sudah dirujuk ke Puskesmas</em>
+              </div>
+              <div class="card">
+                <small style="color:var(--muted)">Keikutsertaan Skrining</small>
+                <b style="font-size:28px;display:block;margin:4px 0">86% <span style="font-size:13px;color:var(--muted)">hadir</span></b>
+                <em style="color:var(--ok);font-size:12px;font-weight:700">Naik 9% dari bulan lalu</em>
+              </div>
+            </div>
+
+            <div class="desk-grid-2">
+              <div class="card">
+                <div class="strong">Grafik Kehadiran Mingguan Jemaah</div>
+                <div class="bars" id="bars-desk" style="display:flex;align-items:flex-end;gap:8px;height:120px;margin-top:14px">
+                  <!-- Synced via JS -->
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="strong">Jemaah yang Perlu Perhatian Khusus</div>
+                <table class="data-table">
+                  <tr><th>Nama Jemaah</th><th>Status</th><th>Puasa</th><th>Tindakan Kader</th></tr>
+                  <tr>
+                    <td>Ibu Siti (64 th, Lansia)</td>
+                    <td><span class="chip risk">Rujuk</span></td>
+                    <td>12/24</td>
+                    <td><button class="btn sm ghost" onclick="showToast('Jadwal rujukan dibuat untuk Ibu Siti')">Poli Puskesmas</button></td>
+                  </tr>
+                  <tr>
+                    <td>Pak Hasan (58 th)</td>
+                    <td><span class="chip warn">Waspada</span></td>
+                    <td>16/24</td>
+                    <td><button class="btn sm ghost" onclick="showToast('Pengingat evaluasi 2 minggu dikirim')">Cek Ulang</button></td>
+                  </tr>
+                  <tr>
+                    <td>Pak Budi (46 th)</td>
+                    <td><span class="chip ok">Normal</span></td>
+                    <td>18/24</td>
+                    <td><span style="font-size:11px;color:var(--muted)">Monitoring</span></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+      <div class="mob-tab-item active" data-tab="beranda">
+        <span class="ic"><svg class="i"><use href="#home"/></svg></span>
+        <span>Beranda</span>
+      </div>
+      <div class="mob-tab-item" data-tab="skrining">
+        <span class="ic"><svg class="i"><use href="#pulse"/></svg></span>
+        <span>Skrining</span>
+      </div>
+      <div class="mob-tab-item" data-tab="puasa">
+        <span class="ic"><svg class="i"><use href="#moon"/></svg></span>
+        <span>Puasa</span>
+      </div>
+      <div class="mob-tab-item" data-tab="nutrisi">
+        <span class="ic"><svg class="i"><use href="#plate"/></svg></span>
+        <span>Nutrisi</span>
+      </div>
+      <div class="mob-tab-item" data-tab="komunitas">
+        <span class="ic"><svg class="i"><use href="#chat"/></svg></span>
+        <span>Komunitas</span>
+      </div>
+    </nav>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     3. MODALS: LOGIN, INPUT SCREENING, PUSKESMAS
+     ============================================================ -->
+
+<!-- LOGIN & PROFILES MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Pilih Akun / Masuk Demo</h3>
+      <button class="btn-close js-close-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="quick-profiles-list">
+        <div class="quick-profile-card" onclick="switchUser('pak_hasan'); enterApp();">
+          <div class="p-avatar">PH</div>
+          <div class="p-info">
+            <b>Pak Hasan (58 tahun)</b>
+            <small>Jemaah &bull; Status: Waspada (Pre-Diabetes) &bull; Puasa: 16/24</small>
+          </div>
+          <span class="chip warn">Pilih</span>
+        </div>
+
+        <div class="quick-profile-card" onclick="switchUser('ibu_siti'); enterApp();">
+          <div class="p-avatar" style="background:var(--risk)">ST</div>
+          <div class="p-info">
+            <b>Ibu Siti (64 tahun, Lansia)</b>
+            <small>Jemaah &bull; Status: Rujuk Puskesmas &bull; Puasa: 12/24</small>
+          </div>
+          <span class="chip risk">Pilih</span>
+        </div>
+
+        <div class="quick-profile-card" onclick="switchUser('pak_budi'); enterApp();">
+          <div class="p-avatar" style="background:var(--ok)">BP</div>
+          <div class="p-info">
+            <b>Pak Budi Prasetyo (46 tahun)</b>
+            <small>Jemaah &bull; Status: Normal &bull; Puasa: 18/24</small>
+          </div>
+          <span class="chip ok">Pilih</span>
+        </div>
+
+        <div class="quick-profile-card" onclick="switchUser('bu_rina'); enterApp(); switchTab('dasbor');">
+          <div class="p-avatar kader">RN</div>
+          <div class="p-info">
+            <b>Ibu Rina (Kader Posbindu)</b>
+            <small>Petugas Posbindu &bull; Akses Dasbor & Pemantauan Jemaah</small>
+          </div>
+          <span class="chip neutral">Kader</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD SCREENING RECORD MODAL -->
+<div class="modal-overlay" id="screening-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Catat Hasil Pengukuran Skrining</h3>
+      <button class="btn-close js-close-modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="form-add-screening" class="stack">
+        <div class="form-group">
+          <label for="input-gdp">Gula Darah Puasa (mg/dL)</label>
+          <input type="number" id="input-gdp" class="form-control" placeholder="Contoh: 105" required>
+        </div>
+
+        <div class="grid2">
+          <div class="form-group">
+            <label for="input-sys">Tensi Sistol (mmHg)</label>
+            <input type="number" id="input-sys" class="form-control" placeholder="Contoh: 120" required>
+          </div>
+          <div class="form-group">
+            <label for="input-dia">Tensi Diastol (mmHg)</label>
+            <input type="number" id="input-dia" class="form-control" placeholder="Contoh: 80" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="input-waist">Lingkar Pinggang (cm)</label>
+          <input type="number" id="input-waist" class="form-control" placeholder="Contoh: 88" required>
+        </div>
+
+        <div class="form-group">
+          <label for="input-note">Catatan Tambahan Kader</label>
+          <input type="text" id="input-note" class="form-control" placeholder="Contoh: Puasa lancar, kondisi stabil">
+        </div>
+
+        <button type="submit" class="btn full amber">Simpan & Hitung Rapor Otomatis</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- PUSKESMAS REFERRAL MODAL -->
+<div class="modal-overlay" id="puskesmas-modal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3>Rujukan Fasilitas Kesehatan</h3>
+      <button class="btn-close js-close-modal">&times;</button>
+    </div>
+    <div class="modal-body stack">
+      <div class="note" style="background:var(--g100);color:var(--g900)">
+        <svg class="i" width="20" height="20"><use href="#mosque"/></svg>
+        <span><b>Puskesmas Mitra Terdekat:</b> Puskesmas Kecamatan Pasar Sehat (0.8 km dari Masjid Al-Falah).</span>
+      </div>
+
+      <div class="card">
+        <b>Jadwal Poli Penyakit Tidak Menular (PTM):</b>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px">Senin - Jumat: 08.00 - 12.00 WIB &bull; Bawa KTP & Rekap SEHATI</p>
+      </div>
+
+      <div class="card">
+        <b>Pendampingan Kader:</b>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px">Kader Bu Rina siap mendampingi jemaah lansia yang memerlukan pengantar rujukan.</p>
+      </div>
+
+      <button class="btn full" onclick="showToast('Permohonan pendampingan rujukan dikirim ke kader Bu Rina.'); closeAllModals();">
+        Minta Pendampingan Kader
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="js/app.js"></script>
+<script>
+  // Post-render hook: populate dynamic elements
+  const originalRenderApp = renderApp;
+  renderApp = function() {
+    originalRenderApp();
+    const user = getCurrentUser();
+    const deskContainer = document.getElementById('chart-container-desk');
+    if (deskContainer) {
+      deskContainer.innerHTML = renderScreeningChart(user, state.currentMetric);
+    }
+    const msgsDesk = document.getElementById('community-msgs-desk');
+    if (msgsDesk) { msgsDesk.scrollTop = msgsDesk.scrollHeight; }
+    const ringDesk = document.querySelector('.js-ring-desk-fg');
+    if (ringDesk && user) {
+      const progress = user.fastingCount / 24;
+      ringDesk.style.strokeDashoffset = 465 - (465 * progress);
+    }
+    const ringNumDesk = document.getElementById('ringnum-desk');
+    if (ringNumDesk && user) { ringNumDesk.textContent = user.fastingCount || 0; }
+  };
+
+  // Mobile bottom nav click delegation
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.mob-tab-item');
+    if (btn && btn.dataset.tab) switchTab(btn.dataset.tab);
+  });
+</script>
+</body>
+</html>
