@@ -538,16 +538,16 @@ function renderScreeningChart(user, metric) {
       <path d="${areaD}" fill="url(#chartGrad)"/>
 
       <!-- Line -->
-      <path d="${pathD}" fill="none" stroke="var(--g700)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="${pathD}" fill="none" stroke="var(--g500)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
 
       <!-- Points & labels -->
       ${points.map((pt, i) => {
         const isLatest = i === points.length - 1;
-        const color = isLatest ? 'var(--amber)' : '#fff';
-        const strokeColor = isLatest ? 'var(--amber)' : 'var(--g700)';
+        const color = isLatest ? 'var(--amber)' : 'var(--card)';
+        const strokeColor = isLatest ? 'var(--amber)' : 'var(--g500)';
         return `
           <g class="chart-point" style="cursor:pointer" onclick="showChartTooltip('${pt.item.date}: ${pt.val} ${unit} (${pt.item.note})')">
-            <circle cx="${pt.x}" cy="${pt.y}" r="${isLatest ? 5.5 : 4}" fill="${color}" stroke="${strokeColor}" stroke-width="2"/>
+            <circle cx="${pt.x}" cy="${pt.y}" r="${isLatest ? 5.5 : 4}" fill="${color}" stroke="${strokeColor}" stroke-width="2.2"/>
             <text x="${pt.x}" y="${height - 10}" font-size="8.5" fill="var(--muted)" text-anchor="middle" font-family="inherit">${pt.item.week}</text>
           </g>
         `;

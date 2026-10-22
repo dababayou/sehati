@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SEHATI - Sehat Bersama Puasa Sunnah & Posbindu Masjid</title>
   <meta name="description" content="Platform kesehatan terintegrasi berbasis masjid: pantau puasa sunnah Senin-Kamis, skrining penyakit tidak menular, rapor kesehatan triase, dan panduan gizi piring sehat.">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -352,10 +352,10 @@
           <button class="desk-nav-btn" data-tab="dasbor"><svg class="i"><use href="#chart"/></svg> Dasbor Posbindu</button>
         </div>
 
-        <div style="margin-top:20px;padding:12px 14px;background:var(--g100);border-radius:14px">
-          <small style="color:var(--g700);font-weight:700;display:block">Jadwal Terdekat:</small>
-          <b style="font-size:12.5px;color:var(--g900);display:block;margin:4px 0">Kamis, 17.15 WIB</b>
-          <small style="color:var(--muted);font-size:11px">Skrining di Serambi Masjid Al-Falah</small>
+        <div class="sidebar-schedule-box">
+          <small class="sched-lbl">Jadwal Terdekat:</small>
+          <b class="sched-time">Kamis, 17.15 WIB</b>
+          <small class="sched-loc">Skrining di Serambi Masjid Al-Falah</small>
         </div>
 
         <div class="sidebar-actions">
@@ -519,7 +519,7 @@
               </div>
               <div class="card" style="padding:14px">
                 <small style="color:var(--muted)">IMT (Indeks Massa Tubuh)</small>
-                <b class="js-prof-imt" style="font-size:18px;display:block;color:var(--g700)">25.0 (Kelebihan BB)</b>
+                <b class="js-prof-imt" style="font-size:18px;display:block;color:var(--g500)">25.0 (Kelebihan BB)</b>
               </div>
             </div>
 
@@ -547,7 +547,7 @@
               <span class="opt js-cond-opt" data-cond="jantung">Penyakit Jantung</span>
             </div>
 
-            <div class="note" style="display:flex;gap:10px;background:var(--amber-soft);border-radius:14px;padding:12px 16px;font-size:12.5px;color:#6E4708;margin-bottom:20px">
+            <div class="note" style="display:flex;gap:10px;background:var(--amber-soft);border-radius:14px;padding:12px 16px;font-size:12.5px;color:var(--amber-dark);margin-bottom:20px">
               <svg class="i" width="18" height="18" style="flex:none"><use href="#info"/></svg>
               <span>Didampingi Kader Bu Rina dan Dokter Puskesmas. Jemaah berhak membatalkan puasa jika mengalami hipoglikemia, pusing, atau dehidrasi akut.</span>
             </div>
@@ -759,7 +759,7 @@
             <div class="card stack">
               <h3 style="font-size:16px;font-weight:800">Rekomendasi Menu Sahur &amp; Berbuka</h3>
               <div class="card" style="background:var(--card-subtle)">
-                <b style="color:var(--g700)">Menu Sahur Padat Energi (Tahan Puasa):</b>
+                <b style="color:var(--g500)">Menu Sahur Padat Energi (Tahan Puasa):</b>
                 <p style="font-size:12.5px;color:var(--ink);margin-top:4px">Oatmeal / nasi merah + sup bening ayam wortel + tahu tempe bacem panggang + 1 pisang + 3 gelas air putih bertahap.</p>
               </div>
               <div class="card" style="background:var(--card-subtle)">
@@ -767,8 +767,8 @@
                 <p style="font-size:12.5px;color:var(--ink);margin-top:4px">3 kurma + air hangat + jeda salat Maghrib + pepes ikan / dada ayam kukus + sayur bening bayam jagung + semangka segar.</p>
               </div>
               <div class="card" style="background:var(--g100)">
-                <b style="color:var(--g900)">Pola Hidrasi 2-4-2 Gelas:</b>
-                <p style="font-size:12px;color:var(--g700);margin-top:4px">2 gelas saat berbuka &bull; 4 gelas sepanjang malam &bull; 2 gelas saat sahur.</p>
+                <b style="color:var(--ink)">Pola Hidrasi 2-4-2 Gelas:</b>
+                <p style="font-size:12px;color:var(--ink-light);margin-top:4px">2 gelas saat berbuka &bull; 4 gelas sepanjang malam &bull; 2 gelas saat sahur.</p>
               </div>
             </div>
           </div>
@@ -1031,7 +1031,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/app.js"></script>
+<script src="js/app.js?v=2"></script>
 <script>
   // Post-render hook: populate dynamic elements
   const originalRenderApp = renderApp;
