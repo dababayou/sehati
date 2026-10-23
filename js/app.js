@@ -581,6 +581,12 @@ function renderApp() {
     el.textContent = user.role === 'kader' ? 'Kader Posbindu' : 'Jemaah Masjid';
     el.className = `badge ${user.role === 'kader' ? 'kader' : 'jemaah'}`;
   });
+  const initials = user.name.replace(/[^a-zA-Z\s]/g, '').trim().split(/\s+/).map(n => n[0]).slice(0, 2).join('').toUpperCase();
+  document.querySelectorAll('.js-user-avatar').forEach(el => {
+    el.textContent = initials;
+    if (user.role === 'kader') el.classList.add('kader');
+    else el.classList.remove('kader');
+  });
 
   // Calculate IMT
   const heightM = user.height / 100;
@@ -611,8 +617,20 @@ function renderApp() {
   // 7. Render Komunitas
   renderKomunitas();
 
-  // 8. Render Dasbor Kader
-  renderDasborKader();
+  // 8. Render Dasbor Kader (Hanya untuk Kader Posbindu)
+  const isKader = user && user.role === 'kader';
+  if (!isKader && state.currentTab === 'dasbor') {
+    state.currentTab = 'beranda';
+  }
+
+  if (isKader) {
+    renderDasborKader();
+  }
+
+  // Sembunyikan atau tampilkan navigasi Dasbor Posbindu hanya untuk Kader
+  document.querySelectorAll('[data-tab="dasbor"]').forEach(el => {
+    el.style.display = isKader ? 'flex' : 'none';
+  });
 
   // Highlight active tabs in both Phone & Desktop modes
   document.querySelectorAll('.desk-nav-btn, .mob-tab-item').forEach(btn => {
@@ -857,36 +875,38 @@ function renderNutrisi() {
 }
 
 function renderKomunitas() {
-  const msgsHtml = state.communityMessages.map(msg => {
-    const isMe = msg.role === 'me';
-    let badgeHtml = '';
-    if (msg.role === 'kader') badgeHtml = '<span class="badge kader">Kader</span>';
-    else if (msg.role === 'nakes') badgeHtml = '<span class="badge nakes">Nakes</span>';
+  // Komunitas WA is presented as an invitation portal to the official WhatsApp group
+}
 
-    const reactsHtml = msg.reacts && msg.reacts.length > 0
-      ? `<div class="reacts">${msg.reacts.map(r => `<span>${r}</span>`).join('')}</div>`
-      : '';
-
-    return `
-      <div class="bub ${isMe ? 'me' : ''}">
-        <div class="who">${msg.sender} ${badgeHtml} <span class="meta" style="margin-left:auto;font-size:9.5px">${msg.time}</span></div>
-        <div class="txt">${msg.text}</div>
-        ${reactsHtml}
-      </div>
-    `;
-  }).join('');
-
-  const container = document.getElementById('community-msgs');
-  if (container) {
-    container.innerHTML = msgsHtml;
-    container.scrollTop = container.scrollHeight;
+// Copy WhatsApp Group Link to clipboard
+function copyWaLink() {
+  const url = 'https://chat.whatsapp.com/IDSvEK6a4XtKrHEZlxlwxq?s=sw&p=a&mlu=4&ilr=4';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('Tautan undangan grup WhatsApp berhasil disalin ke clipboard!');
+    }).catch(() => {
+      fallbackCopyWa(url);
+    });
+  } else {
+    fallbackCopyWa(url);
   }
+}
 
-  const containerDesk = document.getElementById('community-msgs-desk');
-  if (containerDesk) {
-    containerDesk.innerHTML = msgsHtml;
-    containerDesk.scrollTop = containerDesk.scrollHeight;
+function fallbackCopyWa(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('Tautan undangan grup WhatsApp berhasil disalin ke clipboard!');
+  } catch (err) {
+    showToast('Silakan salin tautan undangan secara manual.', 'alert');
   }
+  document.body.removeChild(ta);
 }
 
 function renderDasborKader() {
@@ -931,10 +951,17 @@ function showToast(text, type = 'success') {
 
 // Navigation between views and tabs
 function switchTab(tabName) {
+  const user = getCurrentUser();
+  if (tabName === 'dasbor' && (!user || user.role !== 'kader')) {
+    showToast('Akses Terbatas: Dasbor hanya dapat diakses oleh Kader Posbindu.', 'alert');
+    return;
+  }
   state.currentTab = tabName;
   saveState();
   renderApp();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (window.scrollY > 0) {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
 }
 
 function toggleTheme() {
@@ -947,6 +974,10 @@ function toggleTheme() {
 function switchUser(userId) {
   if (state.users[userId]) {
     state.activeUser = userId;
+    const user = state.users[userId];
+    if (user.role !== 'kader' && state.currentTab === 'dasbor') {
+      state.currentTab = 'beranda';
+    }
     saveState();
     renderApp();
     showToast(`Beralih ke profil ${state.users[userId].name}`, 'info');

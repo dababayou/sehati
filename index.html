@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SEHATI - Sehat Bersama Puasa Sunnah & Posbindu Masjid</title>
   <meta name="description" content="Platform kesehatan terintegrasi berbasis masjid: pantau puasa sunnah Senin-Kamis, skrining penyakit tidak menular, rapor kesehatan triase, dan panduan gizi piring sehat.">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -32,6 +32,7 @@
     <symbol id="plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 3v18"/></symbol>
     <symbol id="phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></symbol>
     <symbol id="desktop" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+    <symbol id="whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c4.55 0 8.25 3.7 8.25 8.24 0 2.2-.86 4.28-2.42 5.83a8.21 8.21 0 0 1-5.83 2.41c-1.45 0-2.88-.38-4.14-1.11l-.3-.17-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.43c0-4.54 3.7-8.24 8.25-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.02 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.29"/></symbol>
   </defs>
 </svg>
 
@@ -348,7 +349,7 @@
           <button class="desk-nav-btn" data-tab="rapor"><svg class="i"><use href="#doc"/></svg> Rapor Kesehatan</button>
           <button class="desk-nav-btn" data-tab="puasa"><svg class="i"><use href="#moon"/></svg> Puasa &amp; Alarm</button>
           <button class="desk-nav-btn" data-tab="nutrisi"><svg class="i"><use href="#plate"/></svg> Piring Sehat &amp; Menu</button>
-          <button class="desk-nav-btn" data-tab="komunitas"><svg class="i"><use href="#chat"/></svg> Komunitas WA</button>
+          <button class="desk-nav-btn" data-tab="komunitas"><svg class="i"><use href="#whatsapp"/></svg> Komunitas WA</button>
           <button class="desk-nav-btn" data-tab="dasbor"><svg class="i"><use href="#chart"/></svg> Dasbor Posbindu</button>
         </div>
 
@@ -460,10 +461,10 @@
                   </div>
                 </button>
                 <button class="action-card-btn" onclick="switchTab('komunitas')">
-                  <div class="action-ic" style="background:var(--g100);color:var(--g700)"><svg class="i" width="18" height="18"><use href="#chat"/></svg></div>
+                  <div class="action-ic" style="background:rgba(37,211,102,0.12);color:#128C7E"><svg class="i" width="18" height="18"><use href="#whatsapp"/></svg></div>
                   <div class="action-info">
-                    <b>Diskusi Kader</b>
-                    <small>Konsultasi grup WA</small>
+                    <b>Grup WhatsApp</b>
+                    <small>Gabung jemaah &amp; nakes</small>
                   </div>
                 </button>
               </div>
@@ -564,7 +565,7 @@
                 <h2 class="title">Log Skrining &amp; Tren Perkembangan</h2>
                 <div class="sub">Grafik evaluasi per siklus 8 sampai 12 minggu</div>
               </div>
-              <button class="btn amber js-open-modal" data-modal="screening-modal">+ Catat Skrining Baru</button>
+              <button class="btn amber js-open-modal" data-modal="screening-modal"><span class="btn-plus">+</span> Catat Skrining Baru</button>
             </div>
 
             <div class="segctl" style="max-width:400px">
@@ -774,36 +775,149 @@
           </div>
         </div>
 
-        <!-- 7. KOMUNITAS VIEW -->
+        <!-- 7. KOMUNITAS VIEW (UNDANGAN GRUP WHATSAPP) -->
         <div class="screen-view" data-screen="komunitas" style="display:none">
-          <div class="card" style="padding:0;overflow:hidden">
-            <div class="chathead">
-              <div class="avatar">AF</div>
-              <div>
-                <div class="strong">Komunitas Jemaah Masjid Al-Falah</div>
-                <div class="meta">42 Jemaah &bull; Petugas Posbindu &amp; Dokter Puskesmas Aktif</div>
+          <div class="wa-invite-wrapper">
+            <!-- Hero Invitation Card -->
+            <div class="wa-hero-card">
+              <div class="wa-hero-header">
+                <div class="wa-avatar-wrap">
+                  <div class="wa-group-avatar">
+                    <svg class="i" width="34" height="34"><use href="#mosque"/></svg>
+                  </div>
+                  <div class="wa-brand-badge" title="WhatsApp Resmi">
+                    <svg class="i" width="15" height="15"><use href="#whatsapp"/></svg>
+                  </div>
+                </div>
+
+                <div class="wa-hero-info">
+                  <div class="wa-verified-tag">
+                    <svg class="i" width="12" height="12"><use href="#check"/></svg> Grup WhatsApp Resmi &bull; DKM Al-Falah &amp; Posbindu
+                  </div>
+                  <h2 class="wa-group-title">Komunitas Sehat Jemaah Masjid Al-Falah</h2>
+                  <p class="wa-group-desc">
+                    Wadah silaturahmi jemaah, pendampingan ibadah puasa sunnah Senin &amp; Kamis, konsultasi kesehatan bersama dokter Puskesmas serta kader Posbindu PTM.
+                  </p>
+
+                  <div class="wa-meta-row">
+                    <span class="wa-pill"><svg class="i" width="13" height="13"><use href="#user"/></svg> 48+ Jemaah Aktif</span>
+                    <span class="wa-pill"><svg class="i" width="13" height="13"><use href="#pulse"/></svg> 3 Nakes &amp; Kader</span>
+                    <span class="wa-pill ok"><span class="live-dot"></span> Diskusi Aktif Harian</span>
+                  </div>
+                </div>
+
+                <div class="wa-hero-cta">
+                  <a href="https://chat.whatsapp.com/IDSvEK6a4XtKrHEZlxlwxq?s=sw&p=a&mlu=4&ilr=4" target="_blank" rel="noopener noreferrer" class="btn btn-wa-join">
+                    <svg class="i" width="18" height="18"><use href="#whatsapp"/></svg>
+                    <span>Bergabung ke Grup WhatsApp</span>
+                  </a>
+                  <button type="button" class="btn btn-wa-copy" onclick="copyWaLink()">
+                    <svg class="i" width="15" height="15"><use href="#doc"/></svg>
+                    <span>Salin Tautan Undangan</span>
+                  </button>
+                  <div class="wa-link-preview-compact" title="https://chat.whatsapp.com/IDSvEK6a4XtKrHEZlxlwxq?s=sw&p=a&mlu=4&ilr=4">
+                    <code>chat.whatsapp.com/IDSvEK6a...</code>
+                  </div>
+                </div>
               </div>
-              <a href="https://chat.whatsapp.com/" target="_blank" class="btn sm amber" style="margin-left:auto">Buka Grup WhatsApp Resmi</a>
             </div>
 
-            <div class="pin">
-              <svg class="i"><use href="#pin"/></svg>
-              <span><b>Pesan Disematkan Petugas:</b> Skrining Posbindu diadakan setiap Kamis sore pukul 17.15 di serambi masjid. Pemeriksaan tensi dan gula darah gratis.</span>
-            </div>
+            <!-- Balanced 2-Column Grid -->
+            <div class="desk-grid-2" style="gap:16px">
+              <!-- Left Column: Manfaat Bergabung -->
+              <div class="card" style="padding:20px">
+                <div style="margin-bottom:14px">
+                  <h3 class="title" style="font-size:15px;margin:0 0 2px 0">Manfaat Bergabung di Komunitas</h3>
+                  <div class="sub" style="font-size:12px">Dukungan komprehensif ibadah puasa &amp; kesehatan mandiri</div>
+                </div>
 
-            <div class="msgs-container" id="community-msgs-desk" style="max-height:420px">
-              <!-- Synced via JS -->
-            </div>
+                <div class="wa-benefits-list">
+                  <div class="wa-b-item">
+                    <div class="wa-b-icon" style="background:#E8F5E9;color:#2E7D32">
+                      <svg class="i" width="18" height="18"><use href="#pulse"/></svg>
+                    </div>
+                    <div>
+                      <b>Konsultasi Harian Nakes &amp; Kader</b>
+                      <p>Tanya keluhan tensi, gula darah, atau fisik saat puasa ke dokter Puskesmas &amp; kader.</p>
+                    </div>
+                  </div>
 
-            <div class="quick-replies">
-              <span class="quick-chip" data-query="Kapan jadwal skrining posbindu minggu ini?">Jadwal skrining</span>
-              <span class="quick-chip" data-query="Bagaimana rekomendasi menu sahur agar kuat puasa?">Ide menu sahur</span>
-              <span class="quick-chip" data-query="Bu Kader, apakah jemaah lansia aman berpuasa jika ada riwayat tensi?">Tanya kader</span>
-            </div>
+                  <div class="wa-b-item">
+                    <div class="wa-b-icon" style="background:#FFF8E1;color:#F57F17">
+                      <svg class="i" width="18" height="18"><use href="#bell"/></svg>
+                    </div>
+                    <div>
+                      <b>Pengingat Sahur &amp; Iftar</b>
+                      <p>Notifikasi harian jadwal sahur, imsak, dan azan Maghrib khusus puasa Senin &amp; Kamis.</p>
+                    </div>
+                  </div>
 
-            <div class="inputbar">
-              <input type="text" id="chat-input-desk" placeholder="Ketik pertanyaan untuk kader atau sesama jemaah...">
-              <button class="btn sm" onclick="handleSendMessage(document.getElementById('chat-input-desk').value); document.getElementById('chat-input-desk').value = '';">Kirim</button>
+                  <div class="wa-b-item">
+                    <div class="wa-b-icon" style="background:#E0F2F1;color:#00695C">
+                      <svg class="i" width="18" height="18"><use href="#plate"/></svg>
+                    </div>
+                    <div>
+                      <b>Ide Menu Piring Sehat</b>
+                      <p>Inspirasi resep sahur kaya serat dan takjil bergizi rendah gula ramah untuk tensi &amp; gula darah.</p>
+                    </div>
+                  </div>
+
+                  <div class="wa-b-item">
+                    <div class="wa-b-icon" style="background:#E3F2FD;color:#1565C0">
+                      <svg class="i" width="18" height="18"><use href="#mosque"/></svg>
+                    </div>
+                    <div>
+                      <b>Jadwal Skrining Serambi Masjid</b>
+                      <p>Informasi jadwal cek berkala tensi &amp; gula darah gratis di Posbindu Al-Falah.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Tata Tertib & Narahubung -->
+              <div class="card" style="padding:20px;display:flex;flex-direction:column;justify-content:space-between">
+                <div>
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+                    <div class="action-ic" style="background:var(--g100);color:var(--g700);width:30px;height:30px">
+                      <svg class="i" width="15" height="15"><use href="#pin"/></svg>
+                    </div>
+                    <h4 style="margin:0;font-size:14.5px;color:var(--ink)">Tata Tertib &amp; Adab Grup</h4>
+                  </div>
+                  <ul class="wa-rules-list">
+                    <li><svg class="i" width="13" height="13"><use href="#check"/></svg> Saling mendoakan &amp; menyemangati puasa sunnah.</li>
+                    <li><svg class="i" width="13" height="13"><use href="#check"/></svg> Fokus topik kesehatan, ibadah, &amp; agenda masjid.</li>
+                    <li><svg class="i" width="13" height="13"><use href="#check"/></svg> Tanpa hoax kesehatan, spam promosi, atau iklan.</li>
+                    <li><svg class="i" width="13" height="13"><use href="#check"/></svg> Jam interaktif nakes: <b>07.00 &ndash; 20.30 WIB</b>.</li>
+                  </ul>
+                </div>
+
+                <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+                    <div class="action-ic" style="background:var(--card-subtle);color:var(--amber-dark);width:28px;height:28px">
+                      <svg class="i" width="14" height="14"><use href="#user"/></svg>
+                    </div>
+                    <h5 style="margin:0;font-size:13px;color:var(--ink)">Narahubung &amp; Pengurus Grup</h5>
+                  </div>
+
+                  <div class="wa-admin-list">
+                    <div class="wa-admin-item" style="padding:7px 10px">
+                      <div class="avatar" style="background:var(--g700);color:#fff;width:32px;height:32px;font-size:11.5px">BR</div>
+                      <div style="flex:1">
+                        <div class="strong" style="font-size:12px">Ibu Rina <span class="badge kader">Kader</span></div>
+                        <div class="meta" style="font-size:10.5px">Koordinator Pendamping Jemaah</div>
+                      </div>
+                    </div>
+
+                    <div class="wa-admin-item" style="padding:7px 10px">
+                      <div class="avatar" style="background:var(--amber-dark);color:#fff;width:32px;height:32px;font-size:11.5px">DD</div>
+                      <div style="flex:1">
+                        <div class="strong" style="font-size:12px">dr. Dina <span class="badge nakes">Dokter</span></div>
+                        <div class="meta" style="font-size:10.5px">Pembina Medis Puskesmas</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -897,7 +1011,7 @@
         <span>Nutrisi</span>
       </div>
       <div class="mob-tab-item" data-tab="komunitas">
-        <span class="ic"><svg class="i"><use href="#chat"/></svg></span>
+        <span class="ic"><svg class="i"><use href="#whatsapp"/></svg></span>
         <span>Komunitas</span>
       </div>
     </nav>
@@ -1031,7 +1145,7 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/app.js?v=2"></script>
+<script src="js/app.js?v=5"></script>
 <script>
   // Post-render hook: populate dynamic elements
   const originalRenderApp = renderApp;
@@ -1042,8 +1156,7 @@
     if (deskContainer) {
       deskContainer.innerHTML = renderScreeningChart(user, state.currentMetric);
     }
-    const msgsDesk = document.getElementById('community-msgs-desk');
-    if (msgsDesk) { msgsDesk.scrollTop = msgsDesk.scrollHeight; }
+
     const ringDesk = document.querySelector('.js-ring-desk-fg');
     if (ringDesk && user) {
       const progress = user.fastingCount / 24;
